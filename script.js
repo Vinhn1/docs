@@ -59,11 +59,13 @@ function initMobileSidebar() {
   function openSidebar() {
     sidebar.classList.remove("-translate-x-full");
     if (overlay) overlay.classList.remove("hidden");
+    document.body.classList.add("overflow-hidden");
   }
 
   function closeSidebar() {
     sidebar.classList.add("-translate-x-full");
     if (overlay) overlay.classList.add("hidden");
+    document.body.classList.remove("overflow-hidden");
   }
 
   toggleBtn.addEventListener("click", openSidebar);
@@ -81,7 +83,7 @@ function initMobileSidebar() {
   });
 }
 
-// Role Filter (All, Admin, User, Onboarding)
+// Role Filter (All, Admin, User, Onboarding) - Syncs both desktop and mobile bars
 function initRoleFilter() {
   const filterButtons = document.querySelectorAll(".role-filter-btn");
   const sections = document.querySelectorAll("[data-role]");
@@ -91,11 +93,14 @@ function initRoleFilter() {
       const selectedRole = this.getAttribute("data-filter");
 
       filterButtons.forEach((b) => {
-        b.classList.remove("bg-indigo-600", "text-white", "shadow-sm");
-        b.classList.add("bg-white", "dark:bg-slate-800", "text-slate-600", "dark:text-slate-300");
+        if (b.getAttribute("data-filter") === selectedRole) {
+          b.classList.remove("bg-white", "bg-slate-100", "dark:bg-slate-800", "text-slate-600", "dark:text-slate-300");
+          b.classList.add("bg-indigo-600", "text-white", "shadow-sm");
+        } else {
+          b.classList.remove("bg-indigo-600", "text-white", "shadow-sm");
+          b.classList.add("text-slate-600", "dark:text-slate-300");
+        }
       });
-      this.classList.remove("bg-white", "dark:bg-slate-800", "text-slate-600", "dark:text-slate-300");
-      this.classList.add("bg-indigo-600", "text-white", "shadow-sm");
 
       sections.forEach((sec) => {
         const roles = sec.getAttribute("data-role").split(" ");
@@ -138,7 +143,7 @@ function initSearch() {
     });
 
     if (searchResults) {
-      searchResults.textContent = "Tìm thấy " + matchCount + " mục";
+      searchResults.textContent = matchCount + " mục";
       searchResults.classList.remove("hidden");
     }
   });
@@ -160,11 +165,13 @@ function initLightbox() {
       modalImg.src = this.src;
       if (modalTitle) modalTitle.textContent = this.alt || "Ảnh chụp màn hình giao diện";
       modal.classList.add("active");
+      document.body.classList.add("overflow-hidden");
     });
   });
 
   function closeModal() {
     modal.classList.remove("active");
+    document.body.classList.remove("overflow-hidden");
   }
 
   if (closeBtn) closeBtn.addEventListener("click", closeModal);
@@ -185,7 +192,7 @@ function initScrollSpy() {
   const navLinks = document.querySelectorAll(".nav-item-sub, .nav-item");
 
   function onScroll() {
-    const scrollPos = window.scrollY + 130;
+    const scrollPos = window.scrollY + 140;
 
     sections.forEach((sec) => {
       const top = sec.offsetTop;
