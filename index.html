@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tài Liệu Hướng Dẫn Sử Dụng & Bàn Giao - Sổ Tay Kỳ Khui Hụi Việt</title>
+  <meta name="description" content="Tài liệu hướng dẫn sử dụng chi tiết và điều kiện kết nối Zalo cho khách hàng vận hành hệ thống Hụi Việt.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-4">
+        
+        <!-- Left: Brand Logo & Title -->
+        <div class="flex items-center gap-3.5 flex-shrink-0">
+          <button id="sidebar-toggle" class="lg:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Mở danh mục">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+          <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-extrabold text-xl shadow-md">
+            HV
+          </div>
+          <div>
+            <span class="font-extrabold text-slate-900 dark:text-white text-lg tracking-tight block">Hụi Việt</span>
+            <span class="text-xs font-medium text-slate-500 dark:text-slate-400 block">Sổ Tay Khui Hụi Tự Động</span>
+          </div>
+        </div>
+
+        <!-- Center: Clean Role Filter Tabs -->
+        <div class="hidden md:flex items-center bg-slate-100 dark:bg-slate-800 p-1.5 rounded-xl text-xs font-semibold">
+          <button data-filter="all" class="role-filter-btn px-4 py-2 rounded-lg bg-indigo-600 text-white shadow-sm transition">
+            Tất cả
+          </button>
+          <button data-filter="onboarding" class="role-filter-btn px-4 py-2 rounded-lg bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition ml-1">
+            Chuẩn bị & Kết nối
+          </button>
+          <button data-filter="admin" class="role-filter-btn px-4 py-2 rounded-lg bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition ml-1">
+            Dành cho Chủ hụi
+          </button>
+          <button data-filter="user" class="role-filter-btn px-4 py-2 rounded-lg bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition ml-1">
+            Dành cho Hụi viên
+          </button>
+        </div>
+
+        <!-- Right: Search Bar, Dark Mode & Print Actions -->
+        <div class="flex items-center gap-3">
+          
+          <!-- Search box -->
+          <div class="relative">
+            <input type="text" id="docs-search" placeholder="Tìm nội dung hướng dẫn..." class="w-40 sm:w-64 pl-9 pr-3 py-2 text-sm rounded-xl border border-slate-300 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100">
+            <svg class="w-4 h-4 text-slate-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          </div>
+          <span id="search-results" class="hidden text-xs text-indigo-600 dark:text-indigo-400 font-semibold whitespace-nowrap"></span>
+
+          <!-- Dark Mode Toggle -->
+          <button id="theme-toggle" class="p-2.5 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm transition hover:bg-slate-50 dark:hover:bg-slate-700" title="Chuyển chế độ Sáng / Tối" aria-label="Chuyển chế độ Sáng / Tối">
+            <!-- Sun icon (shown in dark mode) -->
+            <svg id="theme-toggle-dark-icon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+            <!-- Moon icon (shown in light mode) -->
+            <svg id="theme-toggle-light-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+          </button>
+
+          <!-- Print / Export PDF -->
+          <button onclick="window.print()" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 text-sm font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 shadow-sm transition" title="In hoặc Xuất PDF">
+            <svg class="w-4 h-4 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+            In tài liệu
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Overlay -->
+  <div id="sidebar-overlay" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 hidden lg:hidden"></div>
+
+  <!-- Main Container -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex w-full py-8 gap-8">
+    
+    <!-- Left Navigation Sidebar -->
+    <aside id="sidebar" class="fixed lg:sticky top-20 inset-y-0 left-0 z-50 lg:z-0 w-80 bg-white dark:bg-slate-900 lg:bg-transparent lg:dark:bg-transparent border-r lg:border-r-0 border-slate-200 dark:border-slate-800 p-6 lg:p-0 transform -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-in-out overflow-y-auto max-h-[calc(100vh-6rem)] flex-shrink-0">
+      
+      <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-200 dark:border-slate-800 lg:hidden">
+        <span class="font-bold text-slate-900 dark:text-white text-base">Mục lục tài liệu</span>
+        <button id="sidebar-close" class="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+
+      <nav class="space-y-6">
+        
+        <!-- Mục 1: Yêu cầu chuẩn bị (Đưa lên đầu) -->
+        <div>
+          <a href="#sec-onboarding" class="nav-item">
+            <span>1. Yêu cầu & Tài khoản cần chuẩn bị</span>
+            <span class="badge-system ml-auto">Bắt buộc</span>
+          </a>
+          <div class="mt-1 space-y-0.5">
+            <a href="#sec-onboarding-oa" class="nav-item-sub">1.1 Tài khoản Zalo Official Account (OA)</a>
+            <a href="#sec-onboarding-zalo" class="nav-item-sub">1.2 Tài khoản Zalo Mini App</a>
+            <a href="#sec-onboarding-admin" class="nav-item-sub">1.3 Thông tin định danh Chủ hụi</a>
+          </div>
+        </div>
+
+        <!-- Mục 2: Tổng quan & Quy tắc -->
+        <div>
+          <a href="#sec-overview" class="nav-item">
+            <span>2. Giới thiệu & Ba quy tắc bất biến</span>
+          </a>
+          <div class="mt-1 space-y-0.5">
+            <a href="#sec-overview-core" class="nav-item-sub">2.1 Giá trị cốt lõi của giải pháp</a>
+            <a href="#sec-overview-rules" class="nav-item-sub">2.2 Ba quy tắc vận hành an toàn</a>
+          </div>
+        </div>
+
+        <!-- Mục 3: Dành cho Chủ hụi -->
+        <div>
+          <a href="#sec-owner" class="nav-item">
+            <span>3. Hướng dẫn dành cho Chủ hụi</span>
+            <span class="badge-admin ml-auto">Quản trị</span>
+          </a>
+          <div class="mt-1 space-y-0.5">
+            <a href="#sec-owner-dashboard" class="nav-item-sub">3.1 Trang tổng quan quản lý</a>
+            <a href="#sec-owner-create" class="nav-item-sub">3.2 Tạo và thiết lập dây hụi</a>
+            <a href="#sec-owner-members" class="nav-item-sub">3.3 Quản lý danh bạ & Phân bổ chân</a>
+            <a href="#sec-owner-invites" class="nav-item-sub">3.4 Tạo và gửi liên kết mời Zalo</a>
+            <a href="#sec-owner-live" class="nav-item-sub">3.5 Theo dõi phiên khui tự động</a>
+            <a href="#sec-owner-ledger" class="nav-item-sub">3.6 Sổ đối soát & Bảng tính tiền</a>
+            <a href="#sec-owner-draw" class="nav-item-sub">3.7 Cơ chế bốc thăm khi không ai bỏ thăm</a>
+          </div>
+        </div>
+
+        <!-- Mục 4: Dành cho Hụi viên -->
+        <div>
+          <a href="#sec-member" class="nav-item">
+            <span>4. Hướng dẫn dành cho Hụi viên</span>
+            <span class="badge-user ml-auto">Hội viên</span>
+          </a>
+          <div class="mt-1 space-y-0.5">
+            <a href="#sec-member-invite" class="nav-item-sub">4.1 Nhận và đồng ý lời mời qua Zalo</a>
+            <a href="#sec-member-dashboard" class="nav-item-sub">4.2 Trang chủ & Quản lý chân sống/chết</a>
+            <a href="#sec-member-bid" class="nav-item-sub">4.3 Đặt mức bỏ thăm kín (Bàn phím Việt)</a>
+            <a href="#sec-member-results" class="nav-item-sub">4.4 Theo dõi lịch khui các kỳ</a>
+            <a href="#sec-member-safe" class="nav-item-sub">4.5 Quyền riêng tư & Mã đối chiếu</a>
+          </div>
+        </div>
+
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 max-w-4xl min-w-0 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-sm space-y-16">
+      
+      <!-- HERO BANNER -->
+      <div class="border-b border-slate-200 dark:border-slate-800 pb-8">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="badge-admin">Sổ tay vận hành</span>
+          <span class="badge-system">Dành cho Khách hàng</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+          Sổ Tay Vận Hành & Hướng Dẫn Sử Dụng Hệ Thống Hụi Việt
+        </h1>
+        <p class="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          Giải pháp công nghệ tự động hóa quy trình khui hụi kín, niêm phong mức thăm trên máy chủ, quản lý chân hụi minh bạch và lập sổ đối soát tức thì ngay trên nền tảng Zalo.
+        </p>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- PHẦN 1: YÊU CẦU & TÀI KHOẢN CẦN CHUẨN BỊ -->
+      <!-- ========================================== -->
+      <section id="sec-onboarding" data-role="all onboarding" data-searchable class="space-y-8">
+        <div class="flex items-center gap-3">
+          <span class="w-9 h-9 rounded-xl bg-amber-500 text-white font-extrabold flex items-center justify-center text-base shadow-sm">1</span>
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Yêu cầu & Tài khoản cần chuẩn bị</h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Các điều kiện cần thiết để kích hoạt và vận hành hệ thống thông suốt cho khách hàng</p>
+          </div>
+        </div>
+
+        <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+          Để ứng dụng Hụi Việt hoạt động ổn định trên Zalo của Chủ hụi và tự động gửi tin nhắn thông báo cho toàn bộ các thành viên tham gia, quý khách hàng cần chuẩn bị 3 thành phần sau:
+        </p>
+
+        <!-- 1.1 Zalo OA -->
+        <div id="sec-onboarding-oa" class="p-6 rounded-2xl bg-amber-50/70 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/60 space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-bold text-amber-950 dark:text-amber-200">1.1 Tài khoản Zalo Official Account (Zalo OA)</h3>
+            <span class="badge-system">Rất quan trọng</span>
+          </div>
+          <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+            Zalo OA là trang Zalo chính thức của quý khách (đăng ký theo Doanh nghiệp hoặc Hộ kinh doanh). Hệ thống sẽ kết nối với trang Zalo OA này để phục vụ việc:
+          </p>
+          <ul class="list-disc list-inside text-sm text-slate-700 dark:text-slate-300 space-y-1.5 pl-2">
+            <li><strong>Tự động gửi tin nhắn báo giờ khui:</strong> Nhắc nhở thành viên vào phòng bỏ thăm kín trước giờ chốt sổ.</li>
+            <li><strong>Gửi thông báo kết quả:</strong> Khi phiên khui kết thúc, hệ thống gửi kết quả trúng hốt kèm số tiền đóng kỳ đó cho từng thành viên.</li>
+            <li><strong>Gửi liên kết mời:</strong> Hỗ trợ chia sẻ lời mời tham gia dây hụi trực tiếp qua Zalo an toàn.</li>
+          </ul>
+          <p class="text-xs text-amber-800 dark:text-amber-300 italic pt-1">
+            Yêu cầu: Khách hàng chỉ cần có sẵn trang Zalo OA và cấp quyền kết nối tin nhắn cho đội ngũ kỹ thuật viên thiết lập.
+          </p>
+        </div>
+
+        <!-- 1.2 Zalo Mini App -->
+        <div id="sec-onboarding-zalo" class="p-6 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/20 border border-indigo-200 dark:border-indigo-800/60 space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-bold text-indigo-950 dark:text-indigo-200">1.2 Ứng dụng Zalo Mini App</h3>
+            <span class="badge-admin">Nền tảng vận hành</span>
+          </div>
+          <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+            Mini App là ứng dụng mở trực tiếp trong Zalo. Khách hàng và các thành viên chỉ cần mở Zalo lên là sử dụng được ngay, <strong>không cần tải hay cài đặt bất kỳ phần mềm nào từ App Store hay CH Play</strong>.
+          </p>
+          <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+            Yêu cầu: Khách hàng cung cấp tài khoản quản trị viên trên cổng Nhà phát triển Zalo (Zalo for Developers) hoặc ủy quyền để kỹ thuật viên bàn giao ứng dụng đã đóng gói hoàn chỉnh vào hệ sinh thái của khách hàng.
+          </p>
+        </div>
+
+        <!-- 1.3 Định danh Chủ hụi -->
+        <div id="sec-onboarding-admin" class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 space-y-3">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">1.3 Thông tin định danh Chủ hụi (Quản trị viên)</h3>
+          <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+            Để hệ thống tự động nhận diện và cấp quyền Quản lý dây hụi cho người chịu trách nhiệm chính, khách hàng chỉ cần cung cấp:
+          </p>
+          <ul class="list-disc list-inside text-sm text-slate-700 dark:text-slate-300 space-y-1.5 pl-2">
+            <li><strong>Số điện thoại Zalo của Chủ hụi:</strong> Dùng để kích hoạt quyền Quản trị cao nhất (ADMIN) khi đăng nhập vào ứng dụng.</li>
+            <li><strong>Tên hiển thị và Số tài khoản ngân hàng:</strong> Tên Chủ hụi, tên ngân hàng và số tài khoản nhận tiền đóng hụi để hiển thị rõ ràng trên sổ đối soát sau mỗi kỳ khui.</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- ========================================== -->
+      <!-- PHẦN 2: GIỚI THIỆU & BA NGUYÊN TẮC BẤT BIẾN -->
+      <!-- ========================================== -->
+      <section id="sec-overview" data-role="all admin user" data-searchable class="space-y-8 pt-8 border-t border-slate-200 dark:border-slate-800">
+        <div class="flex items-center gap-3">
+          <span class="w-9 h-9 rounded-xl bg-indigo-600 text-white font-extrabold flex items-center justify-center text-base shadow-sm">2</span>
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Giới thiệu & Ba quy tắc bất biến</h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Các giá trị cốt lõi và cam kết an toàn của phần mềm</p>
+          </div>
+        </div>
+
+        <div id="sec-overview-core" class="space-y-4">
+          <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">2.1 Giá trị cốt lõi của giải pháp</h3>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            Hụi Việt giải quyết triệt để các rắc rối thường gặp trong cách chơi hụi truyền thống: rò rỉ mức bỏ thăm kín, nghi ngờ sự thiếu minh bạch giữa các người chơi, mất thời gian tính toán cộng trừ sổ sách thu chi, và nhầm lẫn danh sách ai đóng bao nhiêu tiền.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5 my-4">
+            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+              <div class="font-bold text-indigo-700 dark:text-indigo-400 text-base mb-1.5">Niêm phong mức thăm</div>
+              <div class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Mức tiền bỏ thăm được hệ thống khóa kín tuyệt đối trên máy chủ cho tới đúng giây chốt sổ. Kể cả Chủ hụi cũng không thể xem trước mức bỏ của thành viên.
+              </div>
+            </div>
+            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+              <div class="font-bold text-indigo-700 dark:text-indigo-400 text-base mb-1.5">Tự động hóa hoàn toàn</div>
+              <div class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Đúng giờ cài đặt, hệ thống tự mở cổng nhận thăm, tự động chốt sổ, tự xác định chân trúng hốt và tính ra số tiền cần nộp mà không cần bấm nút thủ công.
+              </div>
+            </div>
+            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+              <div class="font-bold text-indigo-700 dark:text-indigo-400 text-base mb-1.5">Riêng tư tuyệt đối</div>
+              <div class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Hội viên trong cùng dây hụi hoàn toàn ẩn danh với nhau. Mọi người chỉ thấy mã chân trúng hốt (ví dụ: CH02) mà không thấy số điện thoại hay họ tên của nhau.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="sec-overview-rules" class="space-y-4">
+          <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">2.2 Ba quy tắc vận hành bất biến</h3>
+          
+          <div class="space-y-4">
+            <div class="callout callout-important">
+              <div class="font-bold text-base mb-1">Quy tắc 1: Máy chủ tự động chạy chính xác theo giờ hẹn</div>
+              <p class="text-sm leading-relaxed">
+                Phiên khui mở ra lúc 11:00 và đóng sổ chốt kết quả lúc 11:10 (hoặc giờ do Chủ hụi cài đặt) được máy chủ tự động thực hiện 100%. Không ai có thể kéo dài thời gian hay can thiệp làm sai lệch giờ chốt sổ.
+              </p>
+            </div>
+
+            <div class="callout callout-info">
+              <div class="font-bold text-base mb-1">Quy tắc 2: Cơ chế bảo mật "Khu hụi ẩn"</div>
+              <p class="text-sm leading-relaxed">
+                Để bảo vệ quyền riêng tư cá nhân của người chơi, hội viên tuyệt đối không thể nhìn thấy danh tính thật của những người chơi khác trong dây hụi. Chủ hụi là người duy nhất nắm danh bạ nội bộ để đối soát thu chi.
+              </p>
+            </div>
+
+            <div class="callout callout-warning">
+              <div class="font-bold text-base mb-1">Quy tắc 3: Ứng dụng là sổ tay quản lý, không giữ tiền trực tiếp</div>
+              <p class="text-sm leading-relaxed">
+                Ứng dụng đóng vai trò là sổ sách điện tử hỗ trợ lên lịch, niêm phong bỏ thăm và đối soát tính tiền. Ứng dụng không phải là ví điện tử và không giữ tiền nạp/rút. Việc thanh toán tiền hụi diễn ra thực tế giữa Chủ hụi và Hội viên qua tài khoản ngân hàng hoặc tiền mặt dựa trên bảng tính chi tiết của phần mềm.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- PHẦN 3: HƯỚNG DẪN DÀNH CHO CHỦ HỤI -->
+      <!-- ========================================== -->
+      <section id="sec-owner" data-role="all admin" data-searchable class="space-y-12 pt-8 border-t border-slate-200 dark:border-slate-800">
+        <div class="flex items-center gap-3">
+          <span class="w-9 h-9 rounded-xl bg-indigo-600 text-white font-extrabold flex items-center justify-center text-base shadow-sm">3</span>
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Hướng dẫn sử dụng dành cho Chủ hụi</h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Các thao tác quản lý dây hụi, danh bạ, lời mời và sổ đối soát kỳ khui</p>
+          </div>
+        </div>
+
+        <!-- 3.1 Trang tổng quan -->
+        <div id="sec-owner-dashboard" class="feature-block">
+          <div class="feature-content space-y-4">
+            <div class="inline-flex items-center gap-2">
+              <span class="badge-admin">Màn hình chính</span>
+              <span class="text-xs text-slate-500 font-medium">Lối tắt thao tác nhanh</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">3.1 Trang tổng quan quản lý của Chủ hụi</h3>
+            <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+              Khi mở ứng dụng, Chủ hụi sẽ thấy ngay giao diện trung tâm với các nút chức năng nhanh:
+            </p>
+            <ul class="list-disc list-inside text-sm text-slate-700 dark:text-slate-300 space-y-2 pl-2">
+              <li><strong>Tạo dây hụi mới ngay:</strong> Mở nhanh biểu mẫu thiết lập dây hụi mới.</li>
+              <li><strong>Khách hàng:</strong> Quản lý danh bạ thành viên và phân bổ các chân hụi.</li>
+              <li><strong>Kết quả và Sổ:</strong> Xem lại lịch sử các kỳ đã khui và bảng tính tiền chi tiết.</li>
+              <li><strong>Lịch khui hụi:</strong> Theo dõi toàn bộ lịch trình các kỳ khui trong tương lai.</li>
+              <li><strong>Gửi lời mời:</strong> Tạo liên kết mời thành viên nhận chân qua tin nhắn Zalo.</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="phone-mockup">
+              <div class="phone-mockup-header">
+                <span>18:05</span>
+                <span>Zalo Mini App</span>
+              </div>
+              <img src="assets/images/screen-01-tong-quan-chu-hui.jpg" alt="Tổng quan Chủ hụi" class="screenshot-zoomable" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.2 Tạo dây hụi -->
+        <div id="sec-owner-create" class="feature-block reverse">
+          <div class="feature-media">
+            <div class="phone-mockup">
+              <div class="phone-mockup-header">
+                <span>21:22</span>
+                <span>Tạo và cấu hình dây hụi</span>
+              </div>
+              <img src="assets/images/screen-02-tao-day-hui-moi.jpg" alt="Tạo dây hụi mới" class="screenshot-zoomable" loading="lazy">
+            </div>
+          </div>
+          <div class="feature-content space-y-4">
+            <div class="inline-flex items-center gap-2">
+              <span class="badge-admin">Khởi tạo</span>
+              <span class="text-xs text-slate-500 font-medium">Thiết lập quy tắc</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">3.2 Tạo và thiết lập quy tắc dây hụi mới</h3>
+            <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+              Chủ hụi bấm <strong>"Tạo dây mới"</strong> để thiết lập các thông số hoạt động của dây hụi:
+            </p>
+            
+            <div class="space-y-2.5 text-sm text-slate-700 dark:text-slate-300">
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <strong>Tên dây & Mệnh giá:</strong> Ví dụ "Dây hụi ngày 2 triệu" (mệnh giá 2.000.000 đ/chân).
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <strong>Loại dây hụi:</strong> Chọn <em>Hụi có lãi</em> (thành viên bỏ thăm tranh hốt) hoặc <em>Hụi không có lãi</em> (góp tròn tiền).
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <strong>Hình thức xác định người hốt:</strong> Chọn <em>Đấu giá bỏ thăm kín tự động</em> để máy chủ khóa kín mức thăm và tự động chọn mức cao nhất khi đến giờ chốt.
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <strong>Tổng số chân & Chu kỳ:</strong> Nhập số chân (ví dụ: 3 chân, 5 chân, 12 chân) và tần suất khui (mỗi ngày, mỗi tuần, hoặc mỗi tháng).
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.3 Danh bạ & Phân bổ chân -->
+        <div id="sec-owner-members" class="feature-block">
+          <div class="feature-content space-y-4">
+            <div class="inline-flex items-center gap-2">
+              <span class="badge-admin">Thành viên</span>
+              <span class="text-xs text-slate-500 font-medium">Bảo mật cô lập</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">3.3 Quản lý danh bạ thành viên & Phân bổ chân</h3>
+            <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+              Trong mục <strong>"Khách hàng"</strong>, danh bạ được cô lập riêng cho từng Chủ hụi:
+            </p>
+            <ul class="list-disc list-inside text-sm text-slate-700 dark:text-slate-300 space-y-2 pl-2">
+              <li>Theo dõi toàn bộ danh sách hội viên đã kết nối Zalo với Chủ hụi.</li>
+              <li>Xem cụ thể mỗi người đang tham gia những dây hụi nào và nắm giữ những mã chân nào (ví dụ: anh Vinh giữ chân CH01, chị Thư giữ chân CH03).</li>
+              <li>Chủ hụi có thể bấm nút <strong>"Mời chân"</strong> để nhanh chóng gán thêm chân hụi mới cho thành viên quen thuộc mà không cần tạo liên kết từ đầu.</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="phone-mockup">
+              <div class="phone-mockup-header">
+                <span>21:23</span>
+                <span>Khách hàng và Lời mời</span>
+              </div>
+              <img src="assets/images/screen-03-quan-ly-thanh-vien-chan-hui.jpg" alt="Danh bạ thành viên" class="screenshot-zoomable" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.4 Tạo và gửi liên kết mời -->
+        <div id="sec-owner-invites" class="feature-block reverse">
+          <div class="feature-media">
+            <div class="phone-mockup">
+              <div class="phone-mockup-header">
+                <span>21:24</span>
+                <span>Gửi lời mời tham gia</span>
+              </div>
+              <img src="assets/images/screen-04-tao-gui-lien-ket-moi.jpg" alt="Tạo lời mời qua Zalo" class="screenshot-zoomable" loading="lazy">
+            </div>
+          </div>
+          <div class="feature-content space-y-4">
+            <div class="inline-flex items-center gap-2">
+              <span class="badge-admin">Kết nối</span>
+              <span class="text-xs text-slate-500 font-medium">Mời trực tiếp qua Zalo</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">3.4 Tạo và gửi liên kết mời tham gia hụi qua Zalo</h3>
+            <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+              Mỗi chân hụi được gán một cách chuẩn xác và an toàn:
+            </p>
+            <ol class="list-decimal list-inside text-sm text-slate-700 dark:text-slate-300 space-y-2 pl-2">
+              <li>Chủ hụi chạm vào ô chân còn trống (ví dụ chân <strong>CH02</strong> đang chọn).</li>
+              <li>Nhấn nút <strong>"Tạo liên kết mời nhận chân CH02"</strong>: Hệ thống tạo ra một liên kết định danh riêng.</li>
+              <li>Gửi qua tin nhắn riêng cho người tham gia, hoặc nhấn <strong>"Sao chép tin nhắn mời nhóm chat"</strong> để gửi nhanh vào nhóm chat Zalo chung của dây hụi.</li>
+            </ol>
+            <div class="callout callout-info">
+              Mỗi liên kết mời chỉ có hiệu lực cho 1 người bấm xác nhận. Khi thành viên ấn "Đồng ý", chân hụi sẽ lập tức được khóa với tài khoản Zalo của người đó.
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.5 Theo dõi phiên khui tự động -->
+        <div id="sec-owner-live" class="feature-block">
+          <div class="feature-content space-y-4">
+            <div class="inline-flex items-center gap-2">
+              <span class="badge-admin">Thời gian thực</span>
+              <span class="text-xs text-slate-500 font-medium">Phiên khui trực tiếp</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">3.5 Theo dõi phiên khui tự động theo thời gian thực</h3>
+            <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+              Tại tab <strong>"Phiên khui"</strong>, Chủ hụi theo dõi tiến độ khui hụi:
+            </p>
+            <ul class="list-disc list-inside text-sm text-slate-700 dark:text-slate-300 space-y-2 pl-2">
+              <li><strong>Đồng hồ đếm ngược:</strong> Hiển thị chính xác thời gian còn lại đến giờ chốt sổ (ví dụ: chốt lúc 19:54).</li>
+              <li><strong>Tiến độ gửi thăm:</strong> Cho biết có bao nhiêu người đã gửi mức bỏ thăm (ví dụ: 0/2 đã gửi) để Chủ hụi chủ động nhắn tin nhắc nhở hội viên.</li>
+              <li><strong>Niêm phong an toàn:</strong> Toàn bộ các con số mức thăm của từng người bị khóa kín trên máy chủ cho tới đúng giờ chốt, ngăn ngừa triệt để tình trạng nghi ngờ thiên vị hay tiết lộ giá thăm.</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="phone-mockup">
+              <div class="phone-mockup-header">
+                <span>18:05</span>
+                <span>Theo dõi phiên khui</span>
+              </div>
+              <img src="assets/images/screen-05-theo-doi-phien-khui.jpg" alt="Theo dõi phiên khui" class="screenshot-zoomable" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.6 Sổ đối soát & Bảng tính tiền -->
+        <div id="sec-owner-ledger" class="feature-block reverse">
+          <div class="feature-media">
+            <div class="phone-mockup">
+              <div class="phone-mockup-header">
+                <span>21:29</span>
+                <span>Kết quả khui hụi</span>
+              </div>
+              <img src="assets/images/screen-10-bien-nhan-doi-soat-khu-an.jpg" alt="Bảng tính tiền đối soát" class="screenshot-zoomable" loading="lazy">
+            </div>
+          </div>
+          <div class="feature-content space-y-4">
+            <div class="inline-flex items-center gap-2">
+              <span class="badge-admin">Đối soát</span>
+              <span class="text-xs text-slate-500 font-medium">Tự động tính tiền</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">3.6 Sổ đối soát, bảng tính tiền & Phiếu kết quả</h3>
+            <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+              Ngay khi hết giờ nhận thăm, hệ thống tự động lập <strong>Bảng tính tiền đối soát</strong>:
+            </p>
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm space-y-2">
+              <div><strong>Chân trúng hốt:</strong> Hiển thị mã chân trúng (ví dụ: CH03) và mức thăm cao nhất (100.000 đ).</div>
+              <div><strong>Hụi chết:</strong> Đóng đủ 100% nguyên mệnh giá (ví dụ: 0 chân x 1.000.000 đ = 0 đ).</div>
+              <div><strong>Hụi sống:</strong> Đóng mệnh giá trừ đi mức thăm trúng (ví dụ: 2 chân x 900.000 đ = 1.800.000 đ).</div>
+              <div><strong>Hoa hồng thảo Chủ hụi:</strong> Khấu trừ tự động theo quy định (ví dụ: -200.000 đ).</div>
+              <div class="font-bold text-indigo-700 dark:text-indigo-400 text-base pt-1">Thực giao cho người trúng hốt: 1.600.000 đ</div>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Chủ hụi bấm <strong>"Phiếu kết quả"</strong> để lưu ảnh biên nhận gửi vào nhóm Zalo cho các thành viên đối chiếu và thanh toán tiền.
+            </p>
+          </div>
+        </div>
+
+        <!-- 3.7 Bốc thăm ngẫu nhiên khi không ai bỏ thăm -->
+        <div id="sec-owner-draw" class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-3">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">3.7 Cơ chế xử lý tự động khi không có ai bỏ thăm</h3>
+          <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+            Nếu đến giờ chốt sổ mà không có hội viên nào gửi mức bỏ thăm, hệ thống áp dụng cơ chế giải quyết tự động để dây hụi không bị đình trệ:
+          </p>
+          <ul class="list-disc list-inside text-sm text-slate-700 dark:text-slate-300 space-y-1.5 pl-2">
+            <li>Sau thời gian ân hạn (15 phút), máy chủ sẽ tự động <strong>Bốc thăm ngẫu nhiên</strong> một chân trong số các chân sống chưa từng hốt.</li>
+            <li>Chân được bốc thăm sẽ trúng hốt kỳ đó với <strong>Mức thăm tối thiểu</strong> (mức sàn quy định của dây hụi, ví dụ: 100.000 đ).</li>
+            <li>Đảm bảo kỳ hụi luôn có người hốt đúng tiến độ và sổ đối soát được lập tự động, công bằng và khách quan.</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- ========================================== -->
+      <!-- PHẦN 4: HƯỚNG DẪN DÀNH CHO HỤI VIÊN -->
+      <!-- ========================================== -->
+      <section id="sec-member" data-role="all user" data-searchable class="space-y-12 pt-8 border-t border-slate-200 dark:border-slate-800">
+        <div class="flex items-center gap-3">
+          <span class="w-9 h-9 rounded-xl bg-emerald-600 text-white font-extrabold flex items-center justify-center text-base shadow-sm">4</span>
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Hướng dẫn sử dụng dành cho Hụi viên</h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Các thao tác nhận chân hụi, bỏ thăm kín, theo dõi lịch và xem kết quả</p>
+          </div>
+        </div>
+
+        <!-- 4.1 Nhận lời mời -->
+        <div id="sec-member-invite" class="feature-block">
+          <div class="feature-content space-y-4">
+            <div class="inline-flex items-center gap-2">
+              <span class="badge-user">Tham gia</span>
+              <span class="text-xs text-slate-500 font-medium">Một chạm trên Zalo</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">4.1 Nhận và đồng ý lời mời tham gia qua Zalo</h3>
+            <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+              Khi Chủ hụi gửi tin nhắn mời tham gia, người chơi nhấp vào liên kết trên Zalo để mở thẻ mời:
+            </p>
+            <ul class="list-disc list-inside text-sm text-slate-700 dark:text-slate-300 space-y-2 pl-2">
+              <li>Xem đầy đủ thông tin: <strong>Tên dây hụi</strong>, <strong>Mệnh giá</strong> (ví dụ: 1.000.000 đ/chân), <strong>Mã chân nhận</strong> (ví dụ: CH01), <strong>Kỳ bắt đầu hiệu lực</strong>, và thỏa thuận góp hụi.</li>
+              <li>Nhấn nút màu xanh <strong>"Đồng ý tham gia"</strong>: Chân hụi sẽ được gán cố định cho tài khoản Zalo của bạn.</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="phone-mockup">
+              <div class="phone-mockup-header">
+                <span>18:57</span>
+                <span>Lời mời tham gia</span>
+              </div>
+              <img src="assets/images/screen-08-loi-moi-tham-gia.jpg" alt="Lời mời tham gia hụi" class="screenshot-zoomable" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <!-- 4.2 Trang chủ & Chân sống/chết -->
+        <div id="sec-member-dashboard" class="feature-block reverse">
+          <div class="feature-media">
+            <div class="phone-mockup">
+              <div class="phone-mockup-header">
+                <span>19:46</span>
+                <span>Hụi viên</span>
+              </div>
+              <img src="assets/images/screen-07-tong-quan-hui-vien.jpg" alt="Trang tổng quan Hụi viên" class="screenshot-zoomable" loading="lazy">
+            </div>
+          </div>
+          <div class="feature-content space-y-4">
+            <div class="inline-flex items-center gap-2">
+              <span class="badge-user">Theo dõi</span>
+              <span class="text-xs text-slate-500 font-medium">Chân sống & Chân chết</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">4.2 Trang chủ & Quản lý chân sống và chân chết</h3>
+            <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+              Trang chủ của Hụi viên thống kê trực quan tình trạng các phần hụi đang tham gia:
+            </p>
+            <div class="space-y-3 text-sm">
+              <div class="p-3.5 rounded-xl border border-emerald-200 dark:border-emerald-800 bg-emerald-50/50 dark:bg-emerald-950/20">
+                <div class="font-bold text-emerald-800 dark:text-emerald-300 mb-1">Chân hụi sống (Chờ hốt hụi)</div>
+                <p class="text-slate-700 dark:text-slate-300">Là chân chưa hốt. Mỗi kỳ mở khui, bạn có quyền nhập mức bỏ thăm kín để tranh hốt. Nếu không cần hốt, bạn để trống để hưởng lãi chiết khấu từ người trúng hốt.</p>
+              </div>
+              <div class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60">
+                <div class="font-bold text-slate-800 dark:text-slate-200 mb-1">Chân hụi chết (Đã hoàn thành)</div>
+                <p class="text-slate-600 dark:text-slate-400">Là chân đã từng hốt ở các kỳ trước. Ở các kỳ tiếp theo, bạn chỉ có nghĩa vụ đóng đủ 100% nguyên mệnh giá mỗi kỳ cho Chủ hụi.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4.3 Bỏ thăm kín -->
+        <div id="sec-member-bid" class="feature-block">
+          <div class="feature-content space-y-4">
+            <div class="inline-flex items-center gap-2">
+              <span class="badge-user">Bỏ thăm kín</span>
+              <span class="text-xs text-slate-500 font-medium">Bàn phím tiếng Việt</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">4.3 Đặt mức bỏ thăm kín bằng bàn phím thông minh</h3>
+            <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+              Trong khung giờ nhận thăm (10 phút trước giờ chốt), Hụi viên nhấn <strong>"Nhập mức bỏ thăm kín ngay"</strong>:
+            </p>
+            <ul class="list-disc list-inside text-sm text-slate-700 dark:text-slate-300 space-y-2 pl-2">
+              <li><strong>Phím tắt tiền tiếng Việt:</strong> Hỗ trợ các phím cộng nhanh <code>+50k</code>, <code>+100k</code>, <code>+200k</code>, <code>+500k</code> giúp nhập tiền nhanh chóng, không bị gõ nhầm số chữ số 0.</li>
+              <li><strong>Niêm phong tuyệt đối:</strong> Mức thăm được khóa kín, không ai nhìn thấy. Bạn có thể sửa đổi mức bỏ thăm bao nhiêu lần tùy thích trước giờ chốt sổ. Hệ thống chỉ ghi nhận mức bạn xác nhận sau cùng.</li>
+              <li><strong>Kiểm tra điều kiện:</strong> Nếu chân hụi đã hốt hoặc chưa đến kỳ hiệu lực, ứng dụng sẽ thông báo rõ ràng để bạn nắm.</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="phone-mockup">
+              <div class="phone-mockup-header">
+                <span>19:46</span>
+                <span>Đặt mức bỏ thăm kín</span>
+              </div>
+              <img src="assets/images/screen-09-dat-muc-bo-tham.jpg" alt="Đặt mức bỏ thăm kín" class="screenshot-zoomable" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <!-- 4.4 Lịch khui & Kết quả -->
+        <div id="sec-member-results" class="feature-block reverse">
+          <div class="feature-media">
+            <div class="phone-mockup">
+              <div class="phone-mockup-header">
+                <span>20:37</span>
+                <span>Lịch khui các kỳ</span>
+              </div>
+              <img src="assets/images/screen-06-lich-khui-ket-qua.jpg" alt="Lịch khui các kỳ" class="screenshot-zoomable" loading="lazy">
+            </div>
+          </div>
+          <div class="feature-content space-y-4">
+            <div class="inline-flex items-center gap-2">
+              <span class="badge-user">Minh bạch</span>
+              <span class="text-xs text-slate-500 font-medium">Danh sách các kỳ</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">4.4 Theo dõi lịch khui các kỳ & Kết quả từng kỳ</h3>
+            <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+              Mục <strong>"Lịch khui"</strong> hiển thị chi tiết tiến độ xuyên suốt của dây hụi:
+            </p>
+            <ul class="list-disc list-inside text-sm text-slate-700 dark:text-slate-300 space-y-2 pl-2">
+              <li><strong>Kỳ đã hoàn tất:</strong> Xem mã chân trúng hốt (ví dụ: CH02) và mức thăm thắng cuộc (ví dụ: 100.000 đ).</li>
+              <li><strong>Kỳ sắp khui:</strong> Hiển thị ngày giờ mở nhận thăm kế tiếp để bạn chuẩn bị.</li>
+              <li><strong>Kỳ chưa tới giờ:</strong> Lịch trình dự kiến của các kỳ tiếp theo đến khi mãn dây hụi.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 4.5 Quyền riêng tư & Mã đối chiếu -->
+        <div id="sec-member-safe" class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-3">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">4.5 Quyền riêng tư & Mã đối chiếu bảo mật</h3>
+          <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+            Hội viên được đảm bảo an toàn thông tin 100%:
+          </p>
+          <ul class="list-disc list-inside text-sm text-slate-700 dark:text-slate-300 space-y-1.5 pl-2">
+            <li>Người chơi khác trong dây hụi hoàn toàn không thể xem họ tên, số điện thoại hay tài khoản Zalo của bạn.</li>
+            <li>Mỗi kỳ khui đều có <strong>Mã đối chiếu an toàn</strong> gắn liền với kết quả khui trên máy chủ, ngăn chặn mọi hành vi thay đổi hay sửa số liệu sau khi đã chốt sổ.</li>
+            <li>Khi cần trao đổi hoặc gửi thắc mắc, bạn nhấn nút <strong>"Hỗ trợ Zalo"</strong> để trò chuyện trực tiếp với Chủ hụi.</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- Footer -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-center text-sm text-slate-500 dark:text-slate-400">
+        <p class="font-medium text-slate-700 dark:text-slate-300">Hệ thống Sổ Tay Kỳ Khui Tự Động Hụi Việt</p>
+        <p class="mt-1">Tài liệu hướng dẫn vận hành chuẩn hóa dành cho Khách hàng, Chủ hụi và Hụi viên trên nền tảng Zalo.</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Lightbox Modal for Fullscreen Screenshot Zoom -->
+  <div id="lightbox-modal" class="lightbox-modal" aria-hidden="true">
+    <div class="lightbox-content">
+      <div class="flex items-center justify-between p-3.5 bg-slate-900 text-white text-sm">
+        <span id="lightbox-title" class="font-semibold">Xem chi tiết ảnh chụp màn hình</span>
+        <button id="lightbox-close" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800" aria-label="Đóng">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <div class="p-2.5 bg-slate-950 flex items-center justify-center">
+        <img id="lightbox-img" src="" alt="Ảnh phóng to" class="rounded-lg">
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
